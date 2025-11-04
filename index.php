@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // API Key authentication - REQUIRED for security
-if (empty($config['api_key']) || $config['api_key'] === 'ogs32') {
+if (empty($config['api_key']) || $config['api_key'] === 'ogs327k9mP2xR4wN6vB8qT1yH3zL5jC0fG9aK') {
     http_response_code(500);
     echo json_encode([
         'status' => 'error',

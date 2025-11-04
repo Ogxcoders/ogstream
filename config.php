@@ -7,8 +7,8 @@ return [
     // API Settings
     // SECURITY: REQUIRED - Set a strong random API key before deployment
     // Generate with: openssl rand -hex 32
-    'api_key' => 'ogs32', // REQUIRED for security
-    'allowed_origins' => [], // SECURITY: Add specific domains like ['https://web-a.example.com']
+    'api_key' => 'ogs327k9mP2xR4wN6vB8qT1yH3zL5jC0fG9aK', // REQUIRED for security
+    'allowed_origins' => ['https://capcut.ogtemplate.com'], // SECURITY: Add specific domains like ['https://web-a.example.com']
     
     // Directory Settings
     'videos_dir' => __DIR__ . '/videos', // Directory for original downloaded videos
