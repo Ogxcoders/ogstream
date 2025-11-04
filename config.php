@@ -11,8 +11,8 @@ return [
     'allowed_origins' => ['https://capcut.ogtemplate.com'], // SECURITY: Add specific domains like ['https://web-a.example.com']
     
     // Directory Settings
-    'videos_dir' => __DIR__ . '/videos', // Directory for original downloaded videos
-    'hls_dir' => __DIR__ . '/hls', // Directory for HLS output files
+    'videos_dir' => __DIR__ . '/app/videos', // Directory for original downloaded videos
+    'hls_dir' => __DIR__ . '/app/hls', // Directory for HLS output files
     
     // Public URL Settings
     'base_url' => 'https://v.trendss.net/', // Your Web B domain
