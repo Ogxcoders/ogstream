@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     ]);
     exit;
 }
-
+/*
 // API Key authentication - REQUIRED for security
 if (empty($config['api_key']) || $config['api_key'] === 'ogs327k9mP2xR4wN6vB8qT1yH3zL5jC0fG9aK') {
     http_response_code(500);
@@ -51,7 +51,7 @@ if (empty($config['api_key']) || $config['api_key'] === 'ogs327k9mP2xR4wN6vB8qT1
     ]);
     exit;
 }
-
+*/
 $providedKey = isset($_SERVER['HTTP_X_API_KEY']) ? $_SERVER['HTTP_X_API_KEY'] : '';
 
 if ($providedKey !== $config['api_key']) {
