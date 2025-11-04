@@ -1,0 +1,59 @@
+# Enable URL rewriting
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Allow access to HLS directory
+    RewriteCond %{REQUEST_URI} ^/hls/
+    RewriteRule ^ - [L]
+    
+    # Route all other requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # CORS headers for HLS files
+    <FilesMatch "\.(m3u8|ts)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET, OPTIONS"
+        Header set Access-Control-Allow-Headers "Range"
+    </FilesMatch>
+</IfModule>
+
+# Cache control for HLS files
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # M3U8 playlists should not be cached
+    ExpiresByType application/vnd.apple.mpegurl "access plus 0 seconds"
+    ExpiresByType application/x-mpegURL "access plus 0 seconds"
+    
+    # TS segments can be cached for longer
+    ExpiresByType video/MP2T "access plus 1 year"
+</IfModule>
+
+# Set correct MIME types for HLS
+<IfModule mod_mime.c>
+    AddType application/vnd.apple.mpegurl .m3u8
+    AddType video/MP2T .ts
+</IfModule>
+
+# Disable directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "(config\.php|VideoProcessor\.php|\.log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
